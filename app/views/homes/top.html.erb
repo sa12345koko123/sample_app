@@ -1,7 +1,5 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
-  <p id="test">jQueryでーーーーーす</p>
-  <p class="hoge">色を変えまーーーーーーーす</p>
+<p id="test">jQueryでーーーーーす</p>
+<p class="hoge">色を変えまーーーーーーーす</p>
 
 <!--タブ機能-->
 <div class="tab-panel">
@@ -20,6 +18,13 @@
   </div>
 </div>
 
+
+
 <h2>
   <%= react_component("HelloWorld", { greeting: "Hello from react-rails." }) %>
 </h2>
+
+<%= react_component('Film') %>
+
+<!--投稿-->
+<%= link_to "一覧へ", lists_path %>
