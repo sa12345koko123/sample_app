@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
 # 一覧画面で使う
-  has_many :followings, through: :relationships, source: :followed
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :following_user, through: :follower, source: :followed
+  has_many :follower_user, through: :followed, source: :follower
 
   has_many :lists
   has_one_attached :profile_image
@@ -19,15 +20,15 @@ class User < ApplicationRecord
   end
 
   def follow(user_id)
-  relationships.create(followed_id: user_id)
+   follower.create(followed_id: user_id)
   end
-  # フォローを外すときの処理
+  # ユーザーのフォローを外す
   def unfollow(user_id)
-    relationships.find_by(followed_id: user_id).destroy
+   follower.find_by(followed_id: user_id).destroy
   end
-  # フォローしているか判定
+  # フォロー確認をおこなう
   def following?(user)
-    followings.include?(user)
+   following_user.include?(user)
   end
 
 

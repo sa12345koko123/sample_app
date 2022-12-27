@@ -1,5 +1,27 @@
-<% if current_user.following?(user) %>
-  <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
-<% else %>
-  <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+<% @users.each do |user| %>
+<div class="info">
+  <%= user.name_family %>
+  <%= user.name_first %>
+  <%= user.birth_year %>
+  <%= user.birth_month %>
+  <%= user.birth_day %>
+  <%= user.age %>
+  <%= user.profile %>
+<% end %>
+
+
+ <% if user_signed_in? %>
+  <p><%= link_to "マイページへ", user_path(current_user) %></p>
+  <h2>ユーザー一覧画面</h2>
+  <% User.all.where.not(id: current_user.id).each do |user| %>
+    <p>
+      <%= "id: #{user.id} email: #{user.email}" %>
+      <% if current_user.following?(user) %>
+        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+      <% end %>
+      <%= link_to "show", user_path(user) %>
+    </p>
+  <% end %>
 <% end %>
