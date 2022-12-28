@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
+
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
@@ -13,6 +14,7 @@ class User < ApplicationRecord
   has_many :follower_user, through: :followed, source: :follower
 
   has_many :lists
+  has_many :likes, dependent: :destroy
   has_one_attached :profile_image
 
   def full_name

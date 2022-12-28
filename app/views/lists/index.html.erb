@@ -7,6 +7,8 @@
 　  <%= link_to list.title, list_path(list.id) %>
 　</span>
 
+　<%= render 'likes/like', list: list %>
+
 　<p>画像</p>
 　<% if list.image.attached? %>
 　  <%= image_tag list.image, size: "200x200" %>

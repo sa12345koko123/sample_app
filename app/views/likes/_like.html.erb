@@ -1,0 +1,11 @@
+<% if list.liked_by?(current_user) %>
+  <%= link_to  list_likes_path(list), method: :delete do %>
+    <i class="fas fa-heart"></i>
+    <%= list.likes.count %>
+  <% end %>
+<% else %>
+  <%= link_to list_likes_path(list), method: :post do %>
+    <i class="far fa-heart"></i>
+    <%= list.likes.count %>
+  <% end %>
+<% end %>
