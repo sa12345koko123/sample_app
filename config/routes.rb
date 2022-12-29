@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
-  devise_for :users
+  # get 'relationships/followings'
+  # get 'relationships/followers'
+  devise_for :users, controllers: {
+        registrations: 'users/registrations',
+        sessions: 'users/sessions'
+      }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "homes#top"
   resources :lists, only: [:index,:show,:edit,:create,:destroy,:update] do

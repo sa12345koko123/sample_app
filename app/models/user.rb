@@ -33,6 +33,14 @@ class User < ApplicationRecord
    following_user.include?(user)
   end
 
+  def self.guest
+    User.find_or_create_by!(name_family:'guestuser', name_first:'太郎', email:'xxx@webcamp.jp', handle_name:'タロー', birth_year:'2022', birth_month:'12', birth_day:'12', age:'20') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name_family = "guestuser"
+    end
+  end
+
+
 
   # def get_profile_image
   #   unless profile_image.attached?
