@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :messages, only: [:create]
   resources :rooms, only: [:create,:show]
+  resources :groups do     #ここ！
+    get "join" => "groups#join"
+  end
+
 
 
 
