@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   resources :lists, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :likes, only: [:create, :destroy]
+    resources :comments, only: [:create]
   end
 
   resources :users, only: [:show, :edit, :index]

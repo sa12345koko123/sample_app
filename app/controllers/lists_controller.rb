@@ -26,6 +26,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @comments = @list.comments
+    @comment = current_user.comments.new
   end
 
   def edit

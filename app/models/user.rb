@@ -20,7 +20,9 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
  has_many :messages, dependent: :destroy
 
- has_many :group_users
+ has_many :group_userss, dependent: :destroy
+ has_many :comments
+
 
   def full_name
     self.name_family + " " + self.name_first
