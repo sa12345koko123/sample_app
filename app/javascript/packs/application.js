@@ -15,6 +15,7 @@ ActiveStorage.start()
 
 require("jquery")
 require('test.js')
+// require('reviews.js')
 
 
 // Support component names relative to this directory:

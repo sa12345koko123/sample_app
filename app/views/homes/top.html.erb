@@ -1,3 +1,5 @@
+
+
 <p id="test">jQueryでーーーーーす</p>
 <p class="hoge">色を変えまーーーーーーーす</p>
 
@@ -25,6 +27,16 @@
 </h2>
 
 <%= react_component('Film') %>
+
+<div id ="body-clock">
+  <div id="clock_frame">
+        <!-- 日付部分 -->
+    <span id="clock_date"></span>
+        <!-- 時刻部分 -->
+    <span id="clock_time"><%= react_component('Time') %></span>
+  </div>
+</div>
+
 
 <!--投稿-->
 <%= link_to "投稿一覧へ", lists_path %>
